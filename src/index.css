@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* Make Tailwind dark: variant use the .dark class instead of media */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Ensure dark mode class strategy works */
+:root {
+  color-scheme: light dark;
+}
+html.dark body {
+  background-color: #0f172a; /* slate-900 */
+}
+
+/* Base typography for readability */
+html, body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+body {
+  color: #0f172a; /* slate-900 */
+}
+html.dark body {
+  color: #e2e8f0; /* slate-200 */
+}
+
+/* Headings contrast */
+h1, h2, h3, h4, h5, h6 { color: #0f172a; }
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 { color: #f1f5f9; }
+
+/* Force white text regardless of theme (for LOG(...) title) */
+.force-white { color: #ffffff !important; }
+
+/* Form elements */
+input, textarea, select { color: inherit; }
+::placeholder { color: #64748b; /* slate-500 */ opacity: 1; }
+html.dark ::placeholder { color: #94a3b8; /* slate-400 */ }
+
+/* Text selection */
+::selection { background: rgba(20,184,166,0.25); }
+html.dark ::selection { background: rgba(56,189,248,0.25); }
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-purple-gradient {
+  /* Purple ↔ White animated gradient */
+  background: linear-gradient(270deg, #7c3aed, #cbe507, #a855f7, #02f7ebf0);
+  background-size: 400% 400%;
+  animation: gradientShift 5s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.25); }
+  100% { filter: brightness(1); }
+}
+
+.animated-warning-gradient {
+  /* Fast red/orange warning gradient with brightness pulse */
+  background: linear-gradient(270deg, #ef4444, #f97316, #ef4444, #fbbf24);
+  background-size: 400% 400%;
+  animation: gradientShift 3s linear infinite, warningPulse 1.5s ease-in-out infinite;
+}
+
+/* Solid red fast pulse (no gradient) */
+.animated-red-pulse {
+  background-color: #ef4444; /* red-500 */
+  animation: warningPulse 0.9s ease-in-out infinite;
+}
+
+/* Animated pink ↔ green gradient for JALIN */
+.animated-pink-green {
+  background: linear-gradient(270deg, #ec4899, #e204fb, #e993bf, #fb04c9);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Fast alternating red ↔ yellow for UNDETECTED */
+@keyframes warnFlash {
+  0% { background-color: #ef4444; }
+  50% { background-color: #f59e0b; }
+  100% { background-color: #ef4444; }
+}
+.animated-red-yellow-flash {
+  animation: warnFlash 0.6s linear infinite;
+}
+
+/* Lightning-inspired animated gradient for Outage (NEW) */
+@keyframes lightningFlash {
+  0%, 100% { filter: brightness(1); }
+  45% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+  55% { filter: brightness(1); }
+  70% { filter: brightness(1.2); }
+}
+.animated-lightning {
+  background: linear-gradient(270deg, #0ea5e9, #0ca6d1, #22d3ee, #0180f7);
+  background-size: 400% 400%;
+  animation: gradientShift 5s linear infinite, lightningFlash 2.2s ease-in-out infinite;
+}
+
+/* Animated blue ↔ green for BRINKS */
+.animated-blue-green {
+  background: linear-gradient(270deg, #3b82f6, #10b981, #22d3ee, #34d399);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Animated yellow ↔ green for ARTAJASA */
+.animated-yellow-green {
+  background: linear-gradient(270deg, #fde047, #10b981, #f59e0b, #34d399);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Animated pink ↔ red for ATMi */
+.animated-pink-red {
+  background: linear-gradient(270deg, #fb7185, #be123c, #f43f5e, #9f1239);
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Smooth scrollbars (webkit) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100,116,139,0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100,116,139,0.55);
+}
